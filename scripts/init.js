@@ -1,7 +1,7 @@
 var displayFormulas = ["a", "b"];
 
 window.onload = function() {
-    for (let continerI = 0; continerI < 2; continerI++) {
+    for (let continerI = 0; continerI < displayFormulas.length; continerI++) {
         var continer = document.createElement("span");
         continer.id = "formulaContiner" + continerI;
         continer.classList.add("formulaContiner");
@@ -14,7 +14,6 @@ window.onload = function() {
             continer.append(formula);
 
             var formulaInnerWarp = document.createElement("div");
-            formulaInnerWarp.id = `formulaC${continerI}F${formulaI}Txt`;
             formulaInnerWarp.classList.add("formulaTxt");
             formula.append(formulaInnerWarp);
 
@@ -34,6 +33,23 @@ window.onload = function() {
             formulaRight.classList.add("formulaRight");
             formulaRight.innerHTML = "1";
             formulaInnerWarp.append(formulaRight);
+            
+            var formulaUpgrade = document.createElement("div");
+            formulaUpgrade.id = `formulaC${continerI}F${formulaI}UpgradeWarp`;
+            formulaUpgrade.classList.add("formulaUpgrade");
+            formulaUpgrade.onclick = new Function(`buyUpgrade("${displayFormulas[continerI]}", ${formulaI})`);
+            formulaInnerWarp.append(formulaUpgrade);
+
+            var formulaUpgradeLeft = document.createElement("span");
+            formulaUpgradeLeft.classList.add("formulaUpgradeLeft");
+            formulaUpgradeLeft.innerHTML = `P<sub>1</sub> ≥ `;
+            formulaUpgrade.append(formulaUpgradeLeft);
+
+            var formulaUpgradeRIght = document.createElement("span");
+            formulaUpgradeRIght.id = `formulaC${continerI}F${formulaI}UpgradeCost`;
+            formulaUpgradeRIght.classList.add("formulaUpgradeRight");
+            formulaUpgradeRIght.innerHTML = `0`;
+            formulaUpgrade.append(formulaUpgradeRIght);
         }    
     }
 }

@@ -1,24 +1,33 @@
 function setCache() {
     cache.formulaUsing = {};
     cache.formulaResult = {};
+    cache.formulaCost = {};
     for (let i = 0, l = displayFormulas.length; i < l; i++) {
         var ft = formulaTypes[i];
         cache.formulaUsing[ft] = [];
         cache.formulaResult[ft] = [];
+        cache.formulaCost[ft] = [];
         loop1: for (let j = 0; j < 10; j++) {
-            if (typeof formulas[ft][j] === "undefined") {
+            if (typeof formulas[ft][j] === "undefined" || game.formulaBought[ft][j].eq(0)) {
                 cache.formulaUsing[ft].push(-1);
                 cache.formulaResult[ft].push(new D(1));
+                if (typeof formulas[ft][j] !== "undefined") {
+                    cache.formulaCost[ft].push(formulas[ft][j].cost.bind(new D(0))());
+                } else {
+                    cache.formulaCost[ft].push(new D(Infinity));
+                }
                 continue;
             }
             var temp = formulas[ft][j].formula;
             for (let k = 0, l2 = temp.length; k < l2; k++) if (game.formulaBought[ft][j].lt(temp[k].level)) {
                 cache.formulaUsing[ft].push(k-1);
                 cache.formulaResult[ft].push(formulas[ft][j].formula[cache.formulaUsing[ft][j]].formulaCalc.bind(game.formulaBought[ft][j])());
+                cache.formulaCost[ft].push(formulas[ft][j].cost.bind(game.formulaBought[ft][j])());
                 continue loop1;
             }
             cache.formulaUsing[ft].push(temp.length-1);
             cache.formulaResult[ft].push(formulas[ft][j].formula[cache.formulaUsing[ft][j]].formulaCalc.bind(game.formulaBought[ft][j])());
+            cache.formulaCost[ft].push(formulas[ft][j].cost.bind(game.formulaBought[ft][j])());
         }
     }
 }
@@ -38,12 +47,19 @@ function updateFormulas() {
             } else {
                 document.getElementById(`formulaC${i}F${j}Formula`).innerHTML = 1;
             }
+            document.getElementById(`formulaC${i}F${j}UpgradeCost`).innerHTML = notation(cache.formulaCost[ft][j], 3, 2);
+            document.getElementById(`formulaC${i}F${j}UpgradeWarp`).classList[game.p1.gte(cache.formulaCost[ft][j])?"add":"remove"]("available");
         }
     }
 }
 
+function buyUpgrade(type, idx) {
+    if (game.p1.lt(cache.formulaCost[type][idx])) return;
+    game.formulaBought[type][idx] = game.formulaBought[type][idx].add(1);
+}
+
 function collectPoint() {
-    game.p1 = game.p1.add(cache.formulaResult.a.reduce((a, b) => a.mul(b), new D(1)).pow(cache.formulaResult.b.reduce((a, b) => a.mul(b), new D(1))));
+    game.p1 = cache.formulaResult.a.reduce((a, b) => a.mul(b), new D(1)).pow(cache.formulaResult.b.reduce((a, b) => a.mul(b), new D(1)));
     game.t1 = new D(0);
 }
 

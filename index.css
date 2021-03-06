@@ -29,7 +29,7 @@ sub, sup{
     width: 40vh;
     margin: 1.8vh auto;
     background-color: #666;
-    border: 0.4vh solid #222;
+    border: 0.4vh solid #333;
     border-radius: 1vh;
     cursor: pointer;
     transition: background-color 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
@@ -69,4 +69,29 @@ sub, sup{
 }
 .formulaMid::after {
     content: " = ";
+}
+.formulaUpgrade {
+    width: 35vh;
+    margin: 0 auto;
+    background-color: #666;
+    border: 0.4vh solid #333;
+    border-radius: 1vh;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+}
+.formulaUpgrade.available {
+    color: rgb(75, 218, 47);
+}
+.formulaUpgrade:hover {
+    border-color: #666;
+    background-color: #eee;
+    color: #555;
+    transform: scale(1.06);
+}
+.formulaUpgrade.available:hover {
+    color: rgb(75, 218, 47);
+}
+.formulaUpgrade:active {
+    transform: scale(1);
+    transition: transform 0s;
 }

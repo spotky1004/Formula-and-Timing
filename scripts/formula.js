@@ -7,16 +7,16 @@ var formulas = {
             formula: [
                 {
                     level: 1,
-                    formulaDisplay: "t<sub>1</sub><sup>2</sup> mod ${notation(this.mul(100))}",
-                    formulaCalc: function() {return D.pow(game.t1, 2).mod(new D(this).mul(100))}
+                    formulaDisplay: "t<sub>1</sub><sup>${notation(this.sub(1).div(10).add(2), 3, 1)}</sup> mod ${notation(this.mul(100))}",
+                    formulaCalc: function() {return D.pow(game.t1, this.sub(1).div(10).add(2)).mod(new D(this).mul(100))}
                 },
                 {
                     level: 10,
-                    formulaDisplay: "t<sub>1</sub><sup>3</sup> mod ${notation(this.mul(100).pow(2))}",
-                    formulaCalc: function() {return D.pow(game.t1, 3).mod(new D(this).mul(100).pow(2))}
+                    formulaDisplay: "t<sub>1</sub><sup>${notation(this.sub(1).div(8).add(2), 3, 1)}</sup> mod ${notation(this.mul(100).pow(2))}",
+                    formulaCalc: function() {return D.pow(game.t1, this.sub(1).div(8).add(2)).mod(new D(this).mul(100).pow(2))}
                 }
             ],
-            cost: function() {return F.pow(10, this.pow(2))}
+            cost: function() {return new D(5).mul(this.mul(2).pow(2))}
         },
         // a2
         {
@@ -27,7 +27,7 @@ var formulas = {
                     formulaCalc: function() {return new D(game.t1).sin().abs().mul(this.add(1).pow(2)).add(1)}
                 }
             ],
-            cost: function() {return new D(Infinity)}
+            cost: function() {return new D(200).pow(this.div(4).add(1))}
         }
     ],
     b: [
