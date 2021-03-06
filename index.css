@@ -1,0 +1,72 @@
+@font-face {
+    font-family: "NeoEular";
+    src: url("./NeoEuler-VGO00.otf");
+}
+
+* {
+    font-family: "NeoEular", Times, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    user-select: none;
+    text-align: center;
+    font-size: 2vh;
+    white-space: nowrap;
+}
+sub, sup{
+    font-size: 0.6em;
+}
+
+#mainNav {
+    height: 3vh;
+}
+
+#mainPoint {
+    font-size: 1.4em;
+}
+#mainFormula {
+    margin-top: 2vh;
+}
+#mainBtn {
+    width: 40vh;
+    margin: 1.8vh auto;
+    background-color: #666;
+    border: 0.4vh solid #222;
+    border-radius: 1vh;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+}
+#mainBtn:hover {
+    border-color: #666;
+    background-color: #eee;
+    color: #555;
+    transform: scale(1.06);
+}
+#mainBtn:active {
+    transform: scale(1);
+    transition: transform 0s;
+}
+.mainEq, .formulaRight{
+    filter: blur(0.8vh);
+}
+.mainEq, .formulaRight {
+    filter: none;
+}
+#formulaContainerWarp {
+    display: flex;
+    margin: 0 auto;
+    width: 85vw; height: 60vh;
+
+    justify-content: space-around;
+}
+.formulaContiner {
+    flex: 1;
+    display: inline;
+    text-align: left;
+}
+.formulaWarp {
+    height: 10%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.formulaMid::after {
+    content: " = ";
+}
