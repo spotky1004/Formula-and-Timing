@@ -8,7 +8,7 @@ var n = notation;
 
 Decimal.prototype.mod = function(d) {
     var x = this.div(d);
-    if (x.gt(1e15)) return this;
+    if (x.gt(1e15)) return d;
     return x.sub(x.floor(0)).mul(d);
 }
 

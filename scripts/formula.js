@@ -8,23 +8,28 @@ var formulas = {
                 {
                     level: 1,
                     formulaDisplay: "t<sub>1</sub><sup>${notation(this.sub(1).div(10).add(2), 3, 1)}</sup> mod ${notation(this.mul(100))}",
-                    formulaCalc: function() {return D.pow(game.t1, this.sub(1).div(10).add(2)).mod(new D(this).mul(100))}
+                    formulaCalc: function() {return D.pow(game.t1, this.sub(1).div(10).add(2)).mod(this.mul(100))}
                 },
                 {
                     level: 10,
-                    formulaDisplay: "t<sub>1</sub><sup>${notation(this.sub(1).div(8).add(2), 3, 1)}</sup> mod ${notation(this.mul(100).pow(2))}",
-                    formulaCalc: function() {return D.pow(game.t1, this.sub(1).div(8).add(2)).mod(new D(this).mul(100).pow(2))}
+                    formulaDisplay: "t<sub>1</sub><sup>${notation(this.sub(1).div(9).add(2), 3, 1)}</sup> mod ${notation(this.mul(100).pow(this.div(10)))}",
+                    formulaCalc: function() {return D.pow(game.t1, this.sub(1).div(9).add(2)).mod(this.mul(100).pow(this.div(10)))}
                 }
             ],
-            cost: function() {return new D(5).mul(this.mul(2).pow(2))}
+            cost: function() {return new D(85).mul(this).pow(this.gte(9)?this.sub(8):1)}
         },
         // a2
         {
             formula: [
                 {
                     level: 1,
-                    formulaDisplay: "| sin (t<sub>1</sub> / ${notation(this)}) × ${notation(this.add(1).pow(2))} | + 1",
-                    formulaCalc: function() {return new D(game.t1).sin().abs().mul(this.add(1).pow(2)).add(1)}
+                    formulaDisplay: "| sin (t<sub>1</sub> / ${notation(this)})<sup>10</sup> × ${notation(this.add(1).pow(1.2), 4, 1)} | + 1",
+                    formulaCalc: function() {return new D(game.t1).sin().pow(10).abs().mul(this.add(1).pow(1.2)).add(1)}
+                },
+                {
+                    level: 5,
+                    formulaDisplay: "| sin (t<sub>1</sub> / ${notation(this)})<sup>7</sup> × ${notation(this.add(1).pow(1.4), 4, 1)} | + 1",
+                    formulaCalc: function() {return new D(game.t1).sin().pow(5).abs().mul(this.add(1).pow(1.4)).add(1)}
                 }
             ],
             cost: function() {return new D(200).pow(this.div(4).add(1))}

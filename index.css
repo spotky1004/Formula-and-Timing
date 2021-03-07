@@ -28,7 +28,7 @@ sub, sup{
 #mainBtn {
     width: 40vh;
     margin: 1.8vh auto;
-    background-color: #666;
+    background-color: #888;
     border: 0.4vh solid #333;
     border-radius: 1vh;
     cursor: pointer;
@@ -73,7 +73,7 @@ sub, sup{
 .formulaUpgrade {
     width: 35vh;
     margin: 0 auto;
-    background-color: #666;
+    background-color: #888;
     border: 0.4vh solid #333;
     border-radius: 1vh;
     cursor: pointer;
