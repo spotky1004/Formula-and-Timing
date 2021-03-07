@@ -45,6 +45,17 @@ var formulas = {
             ],
             cost: function() {return new D(4500).mul(this.add(1)).pow(this.div(7).add(1))}
         },
+        // a4
+        {
+            formula: [
+                {
+                    level: 1,
+                    formulaDisplay: "max(log<sub>${notation(new D(4).mul(new D(0.95).pow(this.sub(1))), 2, 2)}</sub> P<sub>1</sub> / log<sub>3</sub> t<sub>1</sub>, 1)",
+                    formulaCalc: function() {return D.max(game.p1.log(new D(4).mul(new D(0.95).pow(this.sub(1)))).div(game.t1.log(3)), 1)}
+                }
+            ],
+            cost: function() {return new D(1e6).pow(this.pow(1.1).div(3).add(1))}
+        },
     ],
     b: [
 
