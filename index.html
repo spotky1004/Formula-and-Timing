@@ -7,34 +7,62 @@
     <link rel="stylesheet" href="index.css">
 
     <script src="./scripts/breakEternityMin.js"></script>
-    <script src="./scripts/numberFunc.js?ver=0.0.b5"></script>
-    <script src="./scripts/index.js?ver=0.0.b5"></script>
-    <script src="./scripts/init.js?ver=0.0.b5"></script>
-    <script src="./scripts/loop.js?ver=0.0.b5"></script>
-    <script src="./scripts/saveload.js?ver=0.0.b5"></script>
-    <script src="./scripts/formula.js?ver=0.0.b5"></script>
+    <script src="./scripts/numberFunc.js?ver=0.0.6"></script>
+    <script src="./scripts/index.js?ver=0.0.6"></script>
+    <script src="./scripts/init.js?ver=0.0.6"></script>
+    <script src="./scripts/loop.js?ver=0.0.6"></script>
+    <script src="./scripts/saveload.js?ver=0.0.6"></script>
+    <script src="./scripts/formula.js?ver=0.0.6"></script>
 
     <title>Formula and Timing</title>
 </head>
 <body>
     <div id="mainNav">
-
+        <span class="mainNavTab" onclick="openTab('formulaContainerWarp')">Main</span>
+        <span class="mainNavTab" id="shopTab" onclick="openTab('modifyWarp')">Modify</span>
     </div>
     <div id="mainRescource">
-        t<sub>1</sub> = <span id="t1display">0</span>
+        t<sub>1</sub> = <span id="t1display">0</span> (+ <span id="t1gainDisplay">0</span> t<sub>1</sub>/s)
         <br>
         P<sub>1</sub> = <span id="p1display">0</span>
     </div>
     <div id="mainFormula">
         a = a<sub>1</sub> ⋅ a<sub>2</sub> ⋅ a<sub>3</sub> ... ⋅ a<sub>10</sub> = <span id="aEqDisplay" class="mainEq">1</span>
         <br>
-        b = b<sub>1</sub> ⋅ b<sub>2</sub> ⋅ b<sub>3</sub> ... ⋅ b<sub>10</sub> = <span class="mainEq">1</span>
+        b = b<sub>1</sub> ⋅ b<sub>2</sub> ⋅ b<sub>3</sub> ... ⋅ b<sub>10</sub> = <span id="bEqDisplay" class="mainEq">1</span>
     </div>
     <div id="mainBtn" onclick="collectPoint()">
-        P<sub>1</sub> = <!--P<sub>1</sub> + -->a<sup>b</sup>, t<sub>1</sub> = 0
+        P<sub>1</sub> = a<sup>b</sup>, t<sub>1</sub> = 0
     </div>
-    <div id="formulaContainerWarp">
+    <div id="tabWarp">
+        <div id="formulaContainerWarp" class="tab">
 
+        </div>
+        <div id="modifyWarp" class="tab" style="display: none;">
+            <table id="modifyList">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="modifyName">Speed Changer</div>
+                            <div id="speedChangerWarp">
+                                <span onclick="speedChange(1)">
+                                    <div>/2</div>
+                                    <div style="font-size: 0.4em;">(left arrow key)</div>
+                                </span>
+                                <span id="speedDisplay">x1</span>
+                                <span onclick="speedChange(-1)">
+                                    <div>×2</div>
+                                    <div style="font-size: 0.4em;">(left arrow key)</div>
+                                </span>
+                            </div>
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 </html>

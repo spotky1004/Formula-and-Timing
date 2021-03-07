@@ -10,13 +10,43 @@
     text-align: center;
     font-size: 2vh;
     white-space: nowrap;
+
+    transition: background-color 0.2s;
 }
 sub, sup{
     font-size: 0.6em;
 }
 
 #mainNav {
-    height: 3vh;
+    padding: 0.5vh;
+    margin-bottom: 2vh;
+    border-radius: 2vh;
+
+    transition: background-color 0.2s;
+}
+#mainNav:hover {
+    background-color: #ddd;
+}
+.mainNavTab {
+    display: inline-block;
+    margin: 0 0.3vw; padding: 0.2vh 0.3vw;
+    border: 0.3vh solid #222;
+    border-radius: 0.5vh;
+    background-color: #eee;
+
+    transition: color 0.2s, background-color 0.2s, border-color 0.2s, transform 0.2s, text-shadow 0.2s;
+    cursor: pointer;
+}
+.mainNavTab:hover {
+    color: #eee;
+    border-color: #aaa;
+    text-shadow: 0 0 0.4vh #fff;
+    background-color: #222;
+    transform: scale(1.2);
+}
+.mainNavTab:active {
+    transform: scale(1);
+    transition: none;
 }
 
 #mainPoint {
@@ -32,13 +62,15 @@ sub, sup{
     border: 0.4vh solid #333;
     border-radius: 1vh;
     cursor: pointer;
-    transition: background-color 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s, transform 0.2s, text-shadow 0.2s, box-shadow 0.2s;
 }
 #mainBtn:hover {
     border-color: #666;
     background-color: #eee;
     color: #555;
     transform: scale(1.06);
+    text-shadow: 0 0 0.5vh #222;
+    box-shadow: 0 0 1vh #666 inset;
 }
 #mainBtn:active {
     transform: scale(1);
@@ -81,6 +113,7 @@ sub, sup{
 }
 .formulaUpgrade.available {
     color: rgb(75, 218, 47);
+    text-shadow: 0 0 0.5vh #222;
 }
 .formulaUpgrade:hover {
     border-color: #666;
@@ -94,4 +127,65 @@ sub, sup{
 .formulaUpgrade:active {
     transform: scale(1);
     transition: transform 0s;
+}
+
+#modifyList {
+    margin: 0 auto;
+    width: 70vw;
+    background-color: #eee;
+}
+#modifyList > tbody > tr {
+    height: 15vh;
+}
+#modifyList > tbody > tr > td:nth-child(1) {
+    display: none;
+    background-color: #888;
+    border-radius: 1vh;
+}
+#modifyList > tbody > tr > td:nth-child(2) {
+    background-color: #888;
+    border: 0.6vh solid #222;
+    border-radius: 1vh;
+    cursor: pointer;
+
+    transition: transform 0.2s, background-color 0.2s, border-color 0.2s, color 0.2s, text-shadow 0.2s;
+}
+#modifyList > tbody > tr > td:nth-child(2):hover {
+    background-color: #222;
+    border-color: #888;
+    color: #eee;
+    text-shadow: 0 0 0.3vh #fff;
+    transform: scale(1.04);
+}
+#modifyList > tbody > tr > td:nth-child(2):active {
+    transform: scale(1);
+
+    transition: none;
+}
+.modifyName {
+    text-shadow: 0 0 0.6vh #fff, 0 0 0.3vh rgb(83, 51, 13);
+}
+/* style for each Modity thing */
+#speedChangerWarp {
+    display: flex;
+    margin: 1vh auto;
+    width: 50vh; height: 7vh;
+    background-color: #ccc;
+
+    border: 0.3vh solid #222;
+}
+#speedChangerWarp > span {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    transition: background-color 0.2s;
+}
+#speedChangerWarp > span:hover {
+    background-color: #555;
+}
+#speedChangerWarp > span > div:first-child {
+    margin-right: 1vh;
 }

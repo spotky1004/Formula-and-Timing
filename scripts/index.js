@@ -32,10 +32,19 @@ function setCache() {
     }
 }
 
-function updateFormulas() {
+function updateAll() {
+    // update basic UI
     document.getElementById("t1display").innerHTML = notation(game.t1, 4, 2);
     document.getElementById("p1display").innerHTML = notation(game.p1, 4, 2);
+    document.getElementById("t1gainDisplay").innerHTML = notation(getT1Speed(), 4, 3);
     document.getElementById("aEqDisplay").innerHTML = notation(cache.formulaResult.a.reduce((a, b) => a.mul(b), new D(1)), 4, 2);
+    document.getElementById("bEqDisplay").innerHTML = notation(cache.formulaResult.b.reduce((a, b) => a.mul(b), new D(1)), 4, 2);
+
+    // update tab related
+    tabData[session.tab].updateFunc();
+}
+
+function updateFormulas() {
     for (let i = 0, l = displayFormulas.length; i < l; i++) {
         var ft = displayFormulas[i];
         for (let j = 0; j < 10; j++) {
@@ -52,10 +61,37 @@ function updateFormulas() {
         }
     }
 }
+function updateModify() {
+    for (let i = 0, l = modifyNames.length; i < l; i++) {
+        let unlocked = game.modifyBoutht.includes(i);
+        document.querySelector(`#modifyList > tbody > tr:nth-child(${i+1}) > td:nth-child(1)`).style.display = !unlocked ? "none" : "table-cell";
+        document.querySelector(`#modifyList > tbody > tr:nth-child(${i+1}) > td:nth-child(2)`).style.display = unlocked ? "none" : "table-cell";
+    }
+    document.getElementById("speedDisplay").innerHTML = (game.t1Speed.lte(0) ? "×" : "/") + notation(new D(2).pow(game.t1Speed), 4, 2)
+}
 
 function buyUpgrade(type, idx) {
     if (game.p1.lt(cache.formulaCost[type][idx])) return;
     game.formulaBought[type][idx] = game.formulaBought[type][idx].add(1);
+}
+function buyModify(idx) {
+    if (game.p1.lt(modifyCosts[idx])) return;
+    game.modifyBoutht.push(idx);
+    game.modifyBoutht = [...new Set(game.modifyBoutht)]
+}
+
+function openTab(id) {
+    var ele = [...document.getElementsByClassName("tab")];
+    session.tab = id;
+    for (let i = 0, l = ele.length; i < l; i++) ele[i].style.display = ele[i].id == id ? tabData[id].display : "none";
+}
+
+function speedChange(num) {
+    game.t1Speed = D.min(D.max(0, game.t1Speed.add(num)), 10);
+}
+
+function getT1Speed() {
+    return new D(1).div(new D(2).pow(game.t1Speed))
 }
 
 function collectPoint() {
