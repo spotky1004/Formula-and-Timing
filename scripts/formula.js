@@ -33,7 +33,18 @@ var formulas = {
                 }
             ],
             cost: function() {return new D(200).pow(this.div(4).add(1))}
-        }
+        },
+        // a3
+        {
+            formula: [
+                {
+                    level: 1,
+                    formulaDisplay: "2[t<sup>1.2</sup>] mod ${notation(this.pow(2).mul(10), 4, 0)}",
+                    formulaCalc: function() {return new D(game.t1).floor(0).mul(2).mod(this.pow(2).mul(10))}
+                }
+            ],
+            cost: function() {return new D(4500).mul(this.add(1).pow(this.div(10).add(1)))}
+        },
     ],
     b: [
 
