@@ -63,11 +63,14 @@ function updateFormulas() {
 }
 function updateModify() {
     for (let i = 0, l = modifyNames.length; i < l; i++) {
-        let unlocked = game.modifyBoutht.includes(i);
+        let unlocked = game.modifyBought.includes(i);
         document.querySelector(`#modifyList > tbody > tr:nth-child(${i+1}) > td:nth-child(1)`).style.display = !unlocked ? "none" : "table-cell";
         document.querySelector(`#modifyList > tbody > tr:nth-child(${i+1}) > td:nth-child(2)`).style.display = unlocked ? "none" : "table-cell";
     }
     document.getElementById("speedDisplay").innerHTML = (game.t1Speed.lte(0) ? "×" : "/") + notation(new D(2).pow(game.t1Speed), 4, 2)
+}
+function updateHelp() {
+    
 }
 
 function buyUpgrade(type, idx) {
@@ -76,8 +79,8 @@ function buyUpgrade(type, idx) {
 }
 function buyModify(idx) {
     if (game.p1.lt(modifyCosts[idx])) return;
-    game.modifyBoutht.push(idx);
-    game.modifyBoutht = [...new Set(game.modifyBoutht)]
+    game.modifyBought.push(idx);
+    game.modifyBought = [...new Set(game.modifyBought)]
 }
 
 function openTab(id) {

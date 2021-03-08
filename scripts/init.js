@@ -1,10 +1,11 @@
 var displayFormulas = ["a", "b"];
 var modifyNames = ["Speed Changer"];
-var modifyCosts = [1e7];
+var modifyCosts = [3e6];
 
 var tabData = {
     formulaContainerWarp: {display: "flex", updateFunc: window.updateFormulas},
-    modifyWarp: {display: "block", updateFunc: window.updateModify}
+    modifyWarp: {display: "block", updateFunc: window.updateModify},
+    helpWarp: {display: "block", updateFunc: window.updateHelp}
 };
 
 var session = {
@@ -85,7 +86,6 @@ window.onload = function() {
 
 // keydown
 window.onkeydown = e => {
-    console.log(1);
     if (e.code == "ArrowLeft" && game.modifyBoutht.includes(0)) speedChange(1);
     if (e.code == "ArrowRight" && game.modifyBoutht.includes(0)) speedChange(-1);
 };

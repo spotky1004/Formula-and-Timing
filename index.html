@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="index.css">
 
     <script src="./scripts/breakEternityMin.js"></script>
-    <script src="./scripts/numberFunc.js?ver=0.0.6"></script>
-    <script src="./scripts/index.js?ver=0.0.6"></script>
-    <script src="./scripts/init.js?ver=0.0.6"></script>
-    <script src="./scripts/loop.js?ver=0.0.6"></script>
-    <script src="./scripts/saveload.js?ver=0.0.6"></script>
-    <script src="./scripts/formula.js?ver=0.0.6"></script>
+    <script src="./scripts/numberFunc.js?ver=0.0.7"></script>
+    <script src="./scripts/index.js?ver=0.0.7"></script>
+    <script src="./scripts/init.js?ver=0.0.7"></script>
+    <script src="./scripts/saveload.js?ver=0.0.7"></script>
+    <script src="./scripts/formula.js?ver=0.0.7"></script>
+    <script src="./scripts/loop.js?ver=0.0.7"></script>
 
     <title>Formula and Timing</title>
 </head>
@@ -20,6 +20,7 @@
     <div id="mainNav">
         <span class="mainNavTab" onclick="openTab('formulaContainerWarp')">Main</span>
         <span class="mainNavTab" id="shopTab" onclick="openTab('modifyWarp')">Modify</span>
+        <span class="mainNavTab" id="shopTab" onclick="openTab('helpWarp')">Help</span>
     </div>
     <div id="mainRescource">
         t<sub>1</sub> = <span id="t1display">0</span> (+ <span id="t1gainDisplay">0</span> t<sub>1</sub>/s)
@@ -62,6 +63,10 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <div class="tab" id="helpWarp" style="display: none;">
+            Help me writing the Help page... Help!<br>
+            and, give me formula idea :D
         </div>
     </div>
 </body>
