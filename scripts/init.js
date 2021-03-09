@@ -86,6 +86,6 @@ window.onload = function() {
 
 // keydown
 window.onkeydown = e => {
-    if (e.code == "ArrowLeft" && game.modifyBoutht.includes(0)) speedChange(1);
-    if (e.code == "ArrowRight" && game.modifyBoutht.includes(0)) speedChange(-1);
+    if (e.code == "ArrowLeft" && game.modifyBought.includes(0)) speedChange(1);
+    if (e.code == "ArrowRight" && game.modifyBought.includes(0)) speedChange(-1);
 };
