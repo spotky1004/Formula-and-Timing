@@ -46,9 +46,10 @@ function updateAll() {
 
 function updateFormulas() {
     for (let i = 0, l = displayFormulas.length; i < l; i++) {
-        var ft = displayFormulas[i];
+        const ft = displayFormulas[i];
         for (let j = 0; j < 10; j++) {
             var temp = cache.formulaUsing[ft][j];
+            document.getElementById(`formulaC${i}F${j}`).classList[cache.formulaResult[ft][j].gte(game.colorizer[ft][j])&&!game.colorizer[ft][j].eq(0)?"add":"remove"]("colorize");
             if (temp != -1) {
                 var tempObj = formulas[ft][j].formula[temp];
                 document.getElementById(`formulaC${i}F${j}Formula`).innerHTML = textParse(tempObj.formulaDisplay, game.formulaBought[ft][j]);
@@ -67,7 +68,20 @@ function updateModify() {
         document.querySelector(`#modifyList > tbody > tr:nth-child(${i+1}) > td:nth-child(1)`).style.display = !unlocked ? "none" : "table-cell";
         document.querySelector(`#modifyList > tbody > tr:nth-child(${i+1}) > td:nth-child(2)`).style.display = unlocked ? "none" : "table-cell";
     }
-    document.getElementById("speedDisplay").innerHTML = (game.t1Speed.lte(0) ? "×" : "/") + notation(new D(2).pow(game.t1Speed), 4, 2)
+    document.getElementById("speedDisplay").innerHTML = (game.t1Speed.lte(0) ? "×" : "/") + notation(new D(2).pow(game.t1Speed), 4, 2);
+    for (let i = 0; i < displayFormulas.length; i++) {
+        const ft = displayFormulas[i];
+        for (let j = 0; j < 10; j++) {
+            document.getElementById(`colorizerC${i}F${j}Btn`).innerHTML = `${displayFormulas[i]}<sub>${j+1}</sub> ≥ ${notation(
+                game.colorizer[ft][j].eq(0) ?
+                cache.formulaResult[ft][j] :
+                game.colorizer[ft][j]
+                , 2, 3)
+            }`;
+            document.getElementById(`colorizerC${i}F${j}Btn`).classList[cache.formulaUsing[ft][j]!=-1?"add":"remove"]("unlocked");
+            document.getElementById(`colorizerC${i}F${j}Btn`).classList[!game.colorizer[ft][j].eq(0)?"add":"remove"]("activated");
+        }
+    }
 }
 function updateHelp() {
     
@@ -81,6 +95,10 @@ function buyModify(idx) {
     if (game.p1.lt(modifyCosts[idx])) return;
     game.modifyBought.push(idx);
     game.modifyBought = [...new Set(game.modifyBought)]
+}
+function colorizeToggle(type, idx) {
+    if (game.colorizer[type][idx].eq(0)) game.colorizer[type][idx] = new D(cache.formulaResult[type][idx]);
+    else game.colorizer[type][idx] = new D(0);
 }
 
 function openTab(id) {
@@ -100,6 +118,7 @@ function getT1Speed() {
 function collectPoint() {
     game.p1 = cache.formulaResult.a.reduce((a, b) => a.mul(b), new D(1)).pow(cache.formulaResult.b.reduce((a, b) => a.mul(b), new D(1)));
     game.t1 = new D(0);
+    save();
 }
 
 function textParse(txt="", bind=undefined) {

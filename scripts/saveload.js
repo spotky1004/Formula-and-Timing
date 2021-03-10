@@ -7,7 +7,8 @@ const tempGame = {
     t1Speed: new D(0),
     p1: new D(0),
     formulaBought: {a: new Array(10).fill(new D(0)), b: new Array(10).fill(new D(0)), c: new Array(10).fill(new D(0)), d: new Array(10).fill(new D(0))},
-    modifyBought: []
+    modifyBought: [],
+    colorizer: {a: new Array(10).fill(new D(0)), b: new Array(10).fill(new D(0)), c: new Array(10).fill(new D(0)), d: new Array(10).fill(new D(0))}
 }
 var game = {};
 

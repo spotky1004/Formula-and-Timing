@@ -1,6 +1,6 @@
 var displayFormulas = ["a", "b"];
-var modifyNames = ["Speed Changer"];
-var modifyCosts = [3e6];
+var modifyNames = ["Speed Changer", "Colorizer"];
+var modifyCosts = [3e6, 1e12];
 
 var tabData = {
     formulaContainerWarp: {display: "flex", updateFunc: window.updateFormulas},
@@ -15,50 +15,50 @@ var session = {
 window.onload = function() {
     // #formulaContainerWarp
     for (let continerI = 0; continerI < displayFormulas.length; continerI++) {
-        var continer = document.createElement("span");
+        let continer = document.createElement("span");
         continer.id = "formulaContiner" + continerI;
         continer.classList.add("formulaContiner");
         document.getElementById("formulaContainerWarp").append(continer);
         
         for (let formulaI = 0; formulaI < 10; formulaI++) {
-            var formula = document.createElement("div");
+            let formula = document.createElement("div");
             formula.id = `formulaC${continerI}F${formulaI}`;
             formula.classList.add("formulaWarp");
             continer.append(formula);
 
-            var formulaInnerWarp = document.createElement("div");
+            let formulaInnerWarp = document.createElement("div");
             formulaInnerWarp.classList.add("formulaTxt");
             formula.append(formulaInnerWarp);
 
-            var formulaLeft = document.createElement("span");
+            let formulaLeft = document.createElement("span");
             formulaLeft.classList.add("formulaLeft");
             formulaLeft.innerHTML = `${displayFormulas[continerI]}<sub>${formulaI+1}</sub> = `
             formulaInnerWarp.append(formulaLeft);
 
-            var formulaMid = document.createElement("span");
+            let formulaMid = document.createElement("span");
             formulaMid.id = `formulaC${continerI}F${formulaI}Formula`;
             formulaMid.classList.add("formulaMid");
             formulaMid.innerHTML = "1";
             formulaInnerWarp.append(formulaMid);
             
-            var formulaRight = document.createElement("span");
+            let formulaRight = document.createElement("span");
             formulaRight.id = `formulaC${continerI}F${formulaI}Eq`;
             formulaRight.classList.add("formulaRight");
             formulaRight.innerHTML = "1";
             formulaInnerWarp.append(formulaRight);
             
-            var formulaUpgrade = document.createElement("div");
+            let formulaUpgrade = document.createElement("div");
             formulaUpgrade.id = `formulaC${continerI}F${formulaI}UpgradeWarp`;
             formulaUpgrade.classList.add("formulaUpgrade");
             formulaUpgrade.onclick = new Function(`buyUpgrade("${displayFormulas[continerI]}", ${formulaI})`);
             formulaInnerWarp.append(formulaUpgrade);
 
-            var formulaUpgradeLeft = document.createElement("span");
+            let formulaUpgradeLeft = document.createElement("span");
             formulaUpgradeLeft.classList.add("formulaUpgradeLeft");
             formulaUpgradeLeft.innerHTML = `P<sub>1</sub> ≥ `;
             formulaUpgrade.append(formulaUpgradeLeft);
 
-            var formulaUpgradeRIght = document.createElement("span");
+            let formulaUpgradeRIght = document.createElement("span");
             formulaUpgradeRIght.id = `formulaC${continerI}F${formulaI}UpgradeCost`;
             formulaUpgradeRIght.classList.add("formulaUpgradeRight");
             formulaUpgradeRIght.innerHTML = `0`;
@@ -81,6 +81,16 @@ window.onload = function() {
         let modifyCostTxt = document.createElement("div");
         modifyCostTxt.innerHTML = "P<sub>1</sub> ≥ " + notation(modifyCosts[i], 2);
         modifyBuyBox.append(modifyCostTxt);
+    }
+    // #colorizerBtnWarp (in #modifyWarp)
+    for (let i = 0; i < displayFormulas.length; i++) {
+        for (let j = 0; j < 10; j++) {
+            let colorizerToggleBtn = document.createElement("span");
+            colorizerToggleBtn.innerHTML = `${displayFormulas[i]}<sub>${j+1}</sub> ≥ ${notation(1.234234e300, 2, 0)}`;
+            colorizerToggleBtn.id = `colorizerC${i}F${j}Btn`;
+            colorizerToggleBtn.onclick = new Function(`colorizeToggle("${displayFormulas[i]}", ${j})`);
+            document.getElementById("colorizerBtnWarp").append(colorizerToggleBtn);
+        }
     }
 }
 

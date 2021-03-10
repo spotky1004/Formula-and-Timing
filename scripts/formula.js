@@ -61,8 +61,8 @@ var formulas = {
             formula: [
                 {
                     level: 1,
-                    formulaDisplay: "(round(sqrt(2⌊t<sub>1</sub>⌋ + 1)) - round(sqrt(2⌊t<sub>1</sub>⌋ + 1))<sup>2</sup> + 2⌊t<sub>1</sub>⌋)/2",
-                    formulaCalc: function() {return game.t1.floor(0).mul(2).add(1).sqrt(2).round().sub(game.t1.floor(0).mul(2).add(1).sqrt(2).round().pow(2)).add(game.t1.floor(0).mul(2)).div(2)}
+                    formulaDisplay: "(round(√(2⌊${notation(this, 4, 0)}t<sub>1</sub>⌋ + 1)) - round(√(2⌊${notation(this, 4, 0)}t<sub>1</sub>⌋ + 1))<sup>2</sup> + 2⌊${notation(this, 4, 0)}t<sub>1</sub>⌋)/2",
+                    formulaCalc: function() {return game.t1.mul(this).floor(0).mul(2).add(1).sqrt(2).round().sub(game.t1.mul(this).floor(0).mul(2).add(1).sqrt(2).round().pow(2)).add(game.t1.mul(this).floor(0).mul(2)).div(2)}
                 }
             ],
             cost: function() {return new D(6e7).mul(new D(10).pow(this.pow(2.4)))}
