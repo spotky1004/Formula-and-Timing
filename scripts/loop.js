@@ -1,4 +1,4 @@
-var tickLength = 33, cache = {};
+let tickLength = 33, cache = {};
 
 function loop() {
     game.lastTickGain = new Date().getTime() - game.lastTime;

@@ -10,7 +10,7 @@ const tempGame = {
     modifyBought: [],
     colorizer: {a: new Array(10).fill(new D(0)), b: new Array(10).fill(new D(0)), c: new Array(10).fill(new D(0)), d: new Array(10).fill(new D(0))}
 }
-var game = {};
+let game = {};
 
 function save() {
     localStorage[savePoint] = JSON.stringify(game);

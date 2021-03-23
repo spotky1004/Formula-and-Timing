@@ -1,6 +1,6 @@
-var formulaTypes = ["a", "b", "c", "d"];
+const formulaTypes = ["a", "b", "c", "d"];
 
-var formulas = {
+const formulas = {
     a: [
         // a1
         {

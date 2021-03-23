@@ -3,7 +3,7 @@ function setCache() {
     cache.formulaResult = {};
     cache.formulaCost = {};
     for (let i = 0, l = displayFormulas.length; i < l; i++) {
-        var ft = formulaTypes[i];
+        const ft = formulaTypes[i];
         cache.formulaUsing[ft] = [];
         cache.formulaResult[ft] = [];
         cache.formulaCost[ft] = [];
@@ -18,7 +18,7 @@ function setCache() {
                 }
                 continue;
             }
-            var temp = formulas[ft][j].formula;
+            const temp = formulas[ft][j].formula;
             for (let k = 0, l2 = temp.length; k < l2; k++) if (game.formulaBought[ft][j].lt(temp[k].level)) {
                 cache.formulaUsing[ft].push(k-1);
                 cache.formulaResult[ft].push(formulas[ft][j].formula[cache.formulaUsing[ft][j]].formulaCalc.bind(game.formulaBought[ft][j])());
@@ -48,10 +48,10 @@ function updateFormulas() {
     for (let i = 0, l = displayFormulas.length; i < l; i++) {
         const ft = displayFormulas[i];
         for (let j = 0; j < 10; j++) {
-            var temp = cache.formulaUsing[ft][j];
+            const temp = cache.formulaUsing[ft][j];
             document.getElementById(`formulaC${i}F${j}`).classList[cache.formulaResult[ft][j].gte(game.colorizer[ft][j])&&!game.colorizer[ft][j].eq(0)?"add":"remove"]("colorize");
             if (temp != -1) {
-                var tempObj = formulas[ft][j].formula[temp];
+                const tempObj = formulas[ft][j].formula[temp];
                 document.getElementById(`formulaC${i}F${j}Formula`).innerHTML = textParse(tempObj.formulaDisplay, game.formulaBought[ft][j]);
                 document.getElementById(`formulaC${i}F${j}Eq`).innerHTML = notation(cache.formulaResult[ft][j], 2, 2);
             } else {
@@ -64,7 +64,7 @@ function updateFormulas() {
 }
 function updateModify() {
     for (let i = 0, l = modifyNames.length; i < l; i++) {
-        let unlocked = game.modifyBought.includes(i);
+        const unlocked = game.modifyBought.includes(i);
         document.querySelector(`#modifyList > tbody > tr:nth-child(${i+1}) > td:nth-child(1)`).style.display = !unlocked ? "none" : "table-cell";
         document.querySelector(`#modifyList > tbody > tr:nth-child(${i+1}) > td:nth-child(2)`).style.display = unlocked ? "none" : "table-cell";
     }
@@ -102,7 +102,7 @@ function colorizeToggle(type, idx) {
 }
 
 function openTab(id) {
-    var ele = [...document.getElementsByClassName("tab")];
+    const ele = [...document.getElementsByClassName("tab")];
     session.tab = id;
     for (let i = 0, l = ele.length; i < l; i++) ele[i].style.display = ele[i].id == id ? tabData[id].display : "none";
 }

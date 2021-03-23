@@ -1,14 +1,14 @@
-var displayFormulas = ["a", "b"];
-var modifyNames = ["Speed Changer", "Colorizer"];
-var modifyCosts = [3e6, 1e12];
+const displayFormulas = ["a", "b"];
+const modifyNames = ["Speed Changer", "Colorizer"];
+const modifyCosts = [3e5, 1e12];
 
-var tabData = {
+const tabData = {
     formulaContainerWarp: {display: "flex", updateFunc: window.updateFormulas},
     modifyWarp: {display: "block", updateFunc: window.updateModify},
     helpWarp: {display: "block", updateFunc: window.updateHelp}
 };
 
-var session = {
+let session = {
     tab: "formulaContainerWarp"
 };
 
